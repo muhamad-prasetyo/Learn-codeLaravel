@@ -14,6 +14,9 @@
     Route::get('/user/{id}', function($id) {
         return 'User' . $id;
     });
+    // ? dan untuk memanggilnya di url browser : 
+    // * example: evaling.com/user/2
+
 
 
 
@@ -21,3 +24,6 @@
     Route::get('/user/{id}/articel/{articelId}', function($id, $articelId) {
         return 'User' . $id . 'Articel' . $articelId;
     });
+
+    // ? dan untuk memanggilnya di url browser : 
+    // * example: evaling.com/user/2/articel/2
