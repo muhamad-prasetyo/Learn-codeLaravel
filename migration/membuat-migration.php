@@ -4,7 +4,7 @@
     // * DENGAN MENGGGUNKAN MIGGRATION KITA BISA OTOMATIS MEMBUAT TABLE BERSETA FIELD DI MYSQL DENGAN LARAVEL ARTISAN.
     
     // * EXAMPLE : 
-    php artisan make:migration create_users_table 
+    php artisan make:migration create_users_table
 
     // * DENGAN CARA DIATAS KITA BISA MEMBUAT SEBUAH TABLE DENGAN NAMA USERS KE MYSQL KITA.
 
@@ -25,7 +25,7 @@
     }
 
     // ! NOTE :
-    // * Default bawaan isi methodnya seperti diatas. Jika kita ingin menambahkan field sesuai kebutuhan kita maka kita bisa menambahkan sebuah field ditengah-tengah field default / bawaannya tersebut.
+    // * Default bawaan isi methodnya seperti diatas. Jika kita ingin menambahkan field sesuai kebutuhan kita maka kita bisa menambahkan sebuah field ditengah-tengah field default / bawaannya tersebut. dan kita bisa memodif di bagian tengah itu hanya untuk pertama kali kita membuat migration 
 
     EXAMPLE : 
     public function up()
@@ -46,3 +46,38 @@
     // * SETELAH SELESAI KITA MEMBUAT TAMBAHAN FIELDNYA LALU KITA JALANKAN MIGRATIONNYA DENGAN CARA BERIKUT.
     // * EXAMPLE : 
     php artisan migrate 
+
+    ########################################################################################################################
+
+
+
+
+
+    #########################################################################################################################
+    #########################################################################################################################
+    // * DAN JIKA KITA INGIN MENGANTI NAMA COLUM PADA MIGRATION KITA BISA MENULIS DAN MEMBUAT SEBUAL MIGRATION BARU.
+
+    // * EXAMAPLE :
+    // * MEMBUAT SEBUAH MIGRATION UNTUK MENGGANTI NAMA COLUM 
+    php artisan make:migration rename_phone_on_users --table=users
+
+    // * LALU DIDALAM FILE MIGRATION TERSEBUT KITA BISA MEMANGGIL FUNGSI YAITU :  
+    $table->renameColumn('from', 'to');
+
+
+    // * EXAMPLE: 
+    // * DIDALAM FUNCTION UP dan DOWN: 
+    public function up() 
+    {
+        Schema::table('users', function(Blueprint $table) {
+            $table->renameColumn('phone', 'phone_number');
+        });
+    }
+
+
+    public function down()
+    {
+        Schema::table('users', function(Blueprint $table){
+            $table->renameColumn('phone_number', 'phone');
+        });
+    }
